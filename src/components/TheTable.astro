@@ -1,0 +1,36 @@
+---
+type Props = {
+  platform: string | boolean
+}
+import readXlsxFile, { type Row } from "read-excel-file/node"
+
+const { platform } = Astro.props
+
+const rows: Row[] = await readXlsxFile('./src/Spis gier 2024.xlsx')
+const titleRow = rows[0]
+const gameRows = rows
+  .slice(1) // from 2nd row
+  .filter((row) => row[1]) // where name is specified
+  .filter((row) => typeof platform === 'string' ? (row[3] as string).toLowerCase() === platform.toLowerCase() : true) // where platform matches
+  .map((row) => row.map((cell: null | string) => cell === null ? '' : cell))
+---
+
+<table class="table w-full border-collapse">
+  <thead>
+    <tr class="border-b border-slate-700">
+      {titleRow.map((rowCell) => <th>{ rowCell }</th> )}
+    </tr>
+  </thead>
+  <tbody>
+    {
+      gameRows.map((row, rowIdx) =>
+        <tr
+          style="--tw-bg-opacity: 0.5"
+          class:list={['hover:bg-red-50', { 'bg-yellow-50': rowIdx % 2 === 0 }]}
+        >
+          {row.map((rowCell) => <td class="p-2">{ rowCell }</td>)}
+        </tr>
+      )
+    }
+  </tbody>
+</table>

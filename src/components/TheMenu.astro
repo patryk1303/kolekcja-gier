@@ -1,0 +1,19 @@
+---
+const menu = [
+  { href: '/kolekcja-gier', label: 'Główna' },
+  { href: '/kolekcja-gier/ps2', label: 'PS2' },
+]
+
+const { pathname } = Astro.url
+
+---
+<ul class="flex list-none gap-4">
+  {menu.map(({href, label}) =>
+    <li>
+      <a
+        {href}
+        class:list={[{'font-bold': href === pathname || `${href}/` === pathname}]}
+      >{ label }</a>
+    </li>
+  )}
+</ul>
