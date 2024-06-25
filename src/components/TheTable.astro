@@ -28,7 +28,8 @@ const gameRows = rows
           style="--tw-bg-opacity: 0.5"
           class:list={['hover:bg-red-50', { 'bg-yellow-50': rowIdx % 2 === 0 }]}
         >
-          {row.map((rowCell) => <td class="p-2">{ rowCell }</td>)}
+          <td>{rowIdx + 1}</td>
+          {row.slice(1).map((rowCell) => <td class="p-2">{ rowCell }</td>)}
         </tr>
       )
     }
