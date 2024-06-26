@@ -1,7 +1,9 @@
 ---
 const menu = [
   { href: '/kolekcja-gier', label: 'Główna' },
+  { href: '/kolekcja-gier/all', label: 'Wszystkie' },
   { href: '/kolekcja-gier/ps2', label: 'PS2' },
+  { href: '/kolekcja-gier/pc-all', label: 'PC - wszystkie' },
   { href: '/kolekcja-gier/pc-amazon', label: 'PC/Amazon' },
   { href: '/kolekcja-gier/pc-epic', label: 'PC/Epic' },
   { href: '/kolekcja-gier/pc-gog', label: 'PC/GOG' },
@@ -11,7 +13,7 @@ const menu = [
 const { pathname } = Astro.url
 
 ---
-<ul class="flex list-none gap-4">
+<ul class="flex justify-center list-none gap-4">
   {menu.map(({href, label}) =>
     <li>
       <a

@@ -1,37 +1,31 @@
 ---
 type Props = {
-  platform: string | boolean
-}
-import readXlsxFile, { type Row } from "read-excel-file/node"
+  platform?: string | boolean;
+};
+import readXlsxFile, { type Row } from "read-excel-file/node";
+import DataTable from "./DataTable/DataTable.svelte";
+import type { TGameRow } from "../@types/TGame";
 
-const { platform } = Astro.props
+const { platform } = Astro.props;
 
-const rows: Row[] = await readXlsxFile('./src/Spis gier 2024.xlsx')
-const titleRow = rows[0]
-const gameRows = rows
+const rows: Row[] = await readXlsxFile("./src/Spis gier 2024.xlsx");
+const gameRows: TGameRow[] = rows
   .slice(1) // from 2nd row
   .filter((row) => row[1]) // where name is specified
-  .filter((row) => typeof platform === 'string' ? (row[3] as string).toLowerCase() === platform.toLowerCase() : true) // where platform matches
-  .map((row) => row.map((cell: null | string) => cell === null ? '' : cell))
+  .filter((row) =>
+    typeof platform === "string"
+      ? (row[3] as string).toLowerCase().startsWith(platform.toLowerCase())
+      : true
+  ) // where platform matches
+  .map((row) => row.map((cell: null | string) => (cell === null ? "" : cell)))
+  .map((row, rowIdx) => ({
+    number: rowIdx + 1,
+    title: row[1],
+    media: row[2],
+    platform: row[3],
+    status: row[4],
+    notes: row[5],
+  }));
 ---
 
-<table class="table w-full border-collapse">
-  <thead>
-    <tr class="border-b border-slate-700">
-      {titleRow.map((rowCell) => <th>{ rowCell }</th> )}
-    </tr>
-  </thead>
-  <tbody>
-    {
-      gameRows.map((row, rowIdx) =>
-        <tr
-          style="--tw-bg-opacity: 0.5"
-          class:list={['hover:bg-red-50', { 'bg-yellow-50': rowIdx % 2 === 0 }]}
-        >
-          <td>{rowIdx + 1}</td>
-          {row.slice(1).map((rowCell) => <td class="p-2">{ rowCell }</td>)}
-        </tr>
-      )
-    }
-  </tbody>
-</table>
+<DataTable client:visible data={gameRows} />
