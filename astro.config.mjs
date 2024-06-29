@@ -7,5 +7,5 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   integrations: [svelte(), tailwind()],
   site: 'https://patryk1303.github.io',
-  base: '/kolekcja-gier',
+  base: '',
 });
