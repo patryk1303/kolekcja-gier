@@ -1,33 +1,30 @@
 ---
 interface Props {
-	title: string;
+  title: string;
 }
 
-import TheMenu from '../components/TheMenu.astro'
+import TheMenu from "../components/TheMenu.astro";
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="pl">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Kolekcja gier" />
-		<meta name="viewport" content="width=device-width" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Kolekcja gier" />
+    <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Security-Policy" />
-		<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body class="bg-gradient-to-bl from-purple-200 via-red-200 to-teal-200 min-h-screen">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-slate-200 min-h-screen">
     <header class="my-4 mx-auto container">
-      <h1 class="text-2xl font-bold text-center mb-4">
-        Kolekcja gier
-      </h1>
-      <TheMenu />
+      <h1 class="text-2xl font-bold text-center mb-4">Kolekcja gier</h1>
     </header>
-    <main class="my-4 mx-auto container">
+    <main class="my-4 mx-auto px-10 container">
       <slot />
     </main>
-	</body>
+  </body>
 </html>

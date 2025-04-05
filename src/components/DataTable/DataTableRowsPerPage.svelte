@@ -1,6 +1,8 @@
 <script lang="ts">
 import BaseSelect from '../Base/BaseSelect.svelte'
+
 import type { DataHandler } from '@vincjo/datatables'
+
 export let handler: DataHandler
 const rowsPerPage = handler.getRowsPerPage()
 const options = [5, 10, 20, 50, 100]

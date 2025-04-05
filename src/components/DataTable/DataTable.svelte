@@ -1,14 +1,16 @@
 <script lang="ts">
 import { DataHandler, Search } from '@vincjo/datatables'
+
 import DataTableTh from './DataTableTh.svelte'
 import DataTableThFilter from './DataTableThFilter.svelte'
 import DataTableThFilterMedium from './DataTableThFilterMedium.svelte'
 import DataTableThFilterPlatform from './DataTableThFilterPlatform.svelte'
+import DataTableSearch from './DataTableSearch.svelte';
+import DataTableRowsPerPage from './DataTableRowsPerPage.svelte';
+import DataTableRowCount from './DataTableRowCount.svelte';
+import DataTablePagination from './DataTablePagination.svelte';
+
 import type { TGameRow } from '../../@types/TGame'
-  import DataTableSearch from './DataTableSearch.svelte';
-  import DataTableRowsPerPage from './DataTableRowsPerPage.svelte';
-  import DataTableRowCount from './DataTableRowCount.svelte';
-  import DataTablePagination from './DataTablePagination.svelte';
 
 export let data: TGameRow[] = []
 

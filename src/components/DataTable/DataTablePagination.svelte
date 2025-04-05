@@ -1,6 +1,7 @@
 <script lang="ts">
+  import BaseButton from "../Base/BaseButton.svelte"
+
   import type { DataHandler } from "@vincjo/datatables"
-  import BaseButton from "../Base/BaseButton.svelte";
 
   export let handler: DataHandler
 
@@ -12,9 +13,7 @@
 <section class="ml-auto flex gap-2">
   <BaseButton
     type="button"
-    extraClasses={{
-      'from-slate-600 via-slate-300 to-slate-600': $pageNumber === 1
-    }}
+    active={$pageNumber === 1}
     on:click={() => handler.setPage('previous')}
   >
     {@html handler.i18n.previous}
